@@ -97,7 +97,7 @@
                     ?>
                         <thead>
                             <tr>
-                                <th>student Name :-</th>
+                                <th>Student Name :-</th>
                                 <?php
                                 $query_name = "SELECT * from student_detail where id=$std_id";
                                 $result_name = $con->query($query_name);
