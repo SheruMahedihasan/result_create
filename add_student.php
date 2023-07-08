@@ -4,8 +4,6 @@ include 'mysqli.config.php';
 
 $sql = "SELECT * from student_detail";
 $sql_con = $con->query($sql);
-// $row_sql=mysqli_fetch_assoc($sql_con);
-// $row_sql = $sql_con->fetch_assoc();
 while ($row_sql = $sql_con->fetch_assoc()) {
     $get_name = $row_sql['name'];
     $get_mobile = $row_sql['mobile'];
@@ -37,19 +35,14 @@ if (isset($_POST['insert'])) {
         $err_password =  "<span class='error'>Please enter password</span>";
     } else {
 
-        if ($name !== $get_name) {
-            $query = "INSERT INTO student_detail(id,name,email,mobile,password) VALUES ('$name','$email','$phone','$password')";
-            $student_id = mysqli_insert_id($con); // Get the inserted ID
-            // $_SESSION["id"] = $student_id;
-            $result = mysqli_query($con, $query);
+        $query = "INSERT INTO student_detail(name,email,mobile,password) VALUES ('$name','$email','$phone','$password')";
+        $student_id = mysqli_insert_id($con); // Get the inserted ID
+        // $_SESSION["id"] = $student_id;
+        $result = mysqli_query($con, $query);
 
-            if ($result) {
-                // $_SESSION['id'] = $student_id;
-                header("location:index.php");
-            }
-        } else {
-            // echo "<span class='error'>Name Already Exist.</span>";
-            echo "<script>alert('Name Already Exist');</script>";
+        if ($result) {
+            // $_SESSION['id'] = $student_id;
+            header("location:index.php");
         }
     }
 }

@@ -62,8 +62,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
         <style>
-            #table {
-                margin: 50px 0px 0px 200px;
+            #result {
+                margin: 2rem 15rem;
                 /* border: 1px solid black; */
             }
         </style>
@@ -82,10 +82,10 @@
                 <button class="btn btn-danger"><a href="login_student.php" class="text-light ">Login</a></button> -->
 
                 </div>
-
+                <button class="btn btn-primary btn-sm" target="_blank" id="printButton" onclick="printResult()">Print Result</button>
             </div>
-            <form action="" method="post">
-                <table id="table" class="table bg-light border text-center  w-75 ">
+            <form action="" method="post" id="result">
+                <table id="table" class="table table-responsive bg-light border-dark table-striped table-bordered table-hover  text-center">
                     <?php
                     $query = "SELECT * FROM tbl_result WHERE tbl_data_id = $id";
                     $result = $con->query($query);
@@ -97,27 +97,27 @@
                     ?>
                         <thead>
                             <tr>
-                                <th>Student Name :-</th>
+                                <th colspan="2">Student Name :-</th>
                                 <?php
                                 $query_name = "SELECT * from student_detail where id=$std_id";
                                 $result_name = $con->query($query_name);
                                 $row_name = $result_name->fetch_assoc();
                                 ?>
-                                <td><?php echo $row_name['name']; ?></td>
+                                <td colspan="3"><?php echo $row_name['name']; ?></td>
                             </tr>
                             <tr>
-                                <th>Student Contact:-</th>
-                                <td><?php echo $row_name['mobile']; ?></td>
+                                <th colspan="2">Student Contact:-</th>
+                                <td colspan="3"><?php echo $row_name['mobile']; ?></td>
                             </tr>
                             <tr>
-                                <th>Month/Year:-</th>
+                                <th colspan="2">Month/Year:-</th>
                                 <?php
                                 $query_year = "SELECT * from tbl_data where id = $id";
                                 $result_year = $con->query($query_year);
                                 $row_year = $result_year->fetch_assoc();
 
                                 ?>
-                                <td><?php echo $row_year['month'] . "/" . $row_year['year']; ?></td>
+                                <td colspan="3"><?php echo $row_year['month'] . "/" . $row_year['year']; ?></td>
                             </tr>
                             <tr>
                                 <th>Subject</th>
@@ -192,7 +192,7 @@
                 </table>
             </form>
             <div class=" text-end">
-                <button class="btn btn-info"><a href="resultlist.php" class="text-light ">Back To Home</a></button>
+                <button class="btn btn-info" id="backButton"><a href="resultlist.php" class="text-light ">Back To Home</a></button>
 
             </div>
 
@@ -200,3 +200,20 @@
     </body>
 
     </html>
+
+
+    <script>
+        function printResult() {
+
+            var printButton = document.getElementById('printButton');
+            printButton.style.display = 'none';
+
+            var backButton = document.getElementById('backButton');
+            backButton.style.display = 'none';
+
+            window.print();
+
+            printButton.style.display = 'inline-block';
+            backButton.style.display = 'inline-block';
+        }
+    </script>
