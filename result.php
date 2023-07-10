@@ -89,7 +89,10 @@ if (isset($_SESSION['year']) && isset($_SESSION['month']) && isset($_SESSION['us
                                 ?>
                             </tbody>
                         </table>
-                        <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                        <div class=" text-end">
+                            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                            <button class="btn btn-primary" id="backButton"><a href="resultlist.php" class="text-light ">View Detail</a></button>
+                        </div>
                     </div>
                 </div>
             </form>
