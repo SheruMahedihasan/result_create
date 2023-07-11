@@ -76,8 +76,8 @@
                             password: password_add
                         },
                         dataType: "json",
-                        success: function(response) {
-                            if (response.success) {
+                        success: function(data) {
+                            if (data.success) {
                                 location.href = "index.php";
                                 // alert("Insertion successful!");
                                 // $("#success_msg").html("Insertion successful!.").slideDown();
@@ -85,17 +85,21 @@
                             } else {
                                 // Handle the error messages
                                 // Display the error messages next to the corresponding form fields
-                                if (response.errors.name) {
-                                    $("#name_error").html(response.errors.name);
+                                if (data.errors && data.errors.name) {
+                                    $("#name_error").html(data.errors.name);
+                                    return;
                                 }
-                                if (response.errors.phone) {
-                                    $("#phone_error").html(response.errors.phone);
+                                if (data.errors && data.errors.phone) {
+                                    $("#phone_error").html(data.errors.phone);
+                                    return;
                                 }
-                                if (response.errors.email) {
-                                    $("#email_error").html(response.errors.email);
+                                if (data.errors && data.errors.email) {
+                                    $("#email_error").html(data.errors.email);
+                                    return;
                                 }
-                                if (response.errors.password) {
-                                    $("#password_error").html(response.errors.password);
+                                if (data.errors && data.errors.password) {
+                                    $("#password_error").html(data.errors.password);
+                                    return;
                                 }
                             }
                         }
