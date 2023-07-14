@@ -66,9 +66,9 @@
             $("#email").on('input', function() {
                 checkemail();
             });
-            $("#password").on('input', function() {
-                checkpassword();
-            });
+            // $("#password").on('input', function() {
+            //     checkpassword();
+            // });
 
 
 
@@ -79,9 +79,9 @@
                 var email_add = $("#email").val();
                 var password_add = $("#password").val();
 
-                if (!checkuser() && !checkphone() && !checkemail() && !checkpassword()) {
+                if (!checkuser() && !checkphone() && !checkemail()) {
                     $("#error_msg").html("All fields are required.").slideDown();
-                } else if (!checkuser() || !checkphone() || !checkemail() || !checkpassword()) {
+                } else if (!checkuser() || !checkphone() || !checkemail()) {
                     $("#error_msg").html("All fields are required.").slideDown();
                 } else {
                     $.ajax({
@@ -100,26 +100,27 @@
                                 // alert("Insertion successful!");
                                 // $("#success_msg").html("Insertion successful!.").slideDown();
                                 // Redirect or perform any other action upon successful insertion
-                            } else {
-                                // Handle the error messages
-                                // Display the error messages next to the corresponding form fields
-                                if (data.errors && data.errors.name) {
-                                    $("#name_error").html(data.errors.name);
-                                    return;
-                                }
-                                if (data.errors && data.errors.phone) {
-                                    $("#phone_error").html(data.errors.phone);
-                                    return;
-                                }
-                                if (data.errors && data.errors.email) {
-                                    $("#email_error").html(data.errors.email);
-                                    return;
-                                }
-                                if (data.errors && data.errors.password) {
-                                    $("#password_error").html(data.errors.password);
-                                    return;
-                                }
                             }
+                            //  else {
+                            //     // Handle the error messages
+                            //     // Display the error messages next to the corresponding form fields
+                            //     if (data.errors && data.errors.name) {
+                            //         $("#name_error").html(data.errors.name);
+                            //         return;
+                            //     }
+                            //     if (data.errors && data.errors.phone) {
+                            //         $("#phone_error").html(data.errors.phone);
+                            //         return;
+                            //     }
+                            //     if (data.errors && data.errors.email) {
+                            //         $("#email_error").html(data.errors.email);
+                            //         return;
+                            //     }
+                            //     if (data.errors && data.errors.password) {
+                            //         $("#password_error").html(data.errors.password);
+                            //         return;
+                            //     }
+                            // }
                         }
                     });
                 }
@@ -132,10 +133,10 @@
                 var user = $("#name").val();
                 var validuser = patternuser.test(user);
                 if ($("#name").val().length < 4) {
-                    $("#name_error").html('username length is too short.').slideDown();
+                    $("#name_error").html('username length is too short.');
                     return false;
                 } else if (!validuser) {
-                    $("#name_error").html('username should be a-z ,A-Z only.').slideDown();
+                    $("#name_error").html('username should be a-z ,A-Z only.');
                     return false;
                 } else {
                     $("#name_error").html('').slideDown();
@@ -149,13 +150,13 @@
                 var email = $("#email").val();
                 var validateemail = patternemail.test(email);
                 if (email == "") {
-                    $("#email_error").html("required field").slideDown();
+                    $("#email_error").html("required field");
                     return false;
                 } else if (!validateemail) {
-                    $("#email_error").html("invalid email").slideDown();
+                    $("#email_error").html("invalid email");
                     return false;
                 } else {
-                    $("#email_error").html("").slideDown();
+                    $("#email_error").html("");
                     return true;
                 }
             }
@@ -163,33 +164,19 @@
 
             function checkphone() {
                 if (!$.isNumeric($("#mobile").val())) {
-                    $("#phone_error").html("only number is allowed").slideDown();
+                    $("#phone_error").html("only number is allowed");
                     return false;
                 } else if ($("#mobile").val().length != 10) {
-                    $("#phone_error").html("10 digit required").slideDown();
+                    $("#phone_error").html("10 digit required");
                     return false;
                 } else {
-                    $("#phone_error").html("").slideDown();
+                    $("#phone_error").html("");
                     return true;
                 }
             }
 
 
-            function checkpassword() {
-                var patternpassword = "^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$";
-                var password = $("#password").val();
-                var validatepassword = patternpassword.test(password);
 
-                if (password == "") {
-                    $("#password_error").html("field required").slideDown();
-                    return false;
-                } else if (!validatepassword) {
-                    $("#password_error").html("Minimum eight characters, at least one letter, one number and one special character").slideDown();
-                    return false;
-                } else {
-                    $("#password_error").html("").slideDown();
-                }
-            }
 
 
         });
