@@ -56,6 +56,22 @@
 
     <script>
         $(document).ready(function() {
+
+            $("#name").on('input', function() {
+                checkuser();
+            });
+            $("#mobile").on('input', function() {
+                checkphone();
+            });
+            $("#email").on('input', function() {
+                checkemail();
+            });
+            $("#password").on('input', function() {
+                checkpassword();
+            });
+
+
+
             $("#insert").on("click", function(e) {
                 e.preventDefault();
                 var name_add = $("#name").val();
@@ -63,7 +79,9 @@
                 var email_add = $("#email").val();
                 var password_add = $("#password").val();
 
-                if (name_add == "" || mobile_add == "" || email_add == "" || password_add == "") {
+                if (!checkuser() && !checkphone() && !checkemail() && !checkpassword()) {
+                    $("#error_msg").html("All fields are required.").slideDown();
+                } else if (!checkuser() || !checkphone() || !checkemail() || !checkpassword()) {
                     $("#error_msg").html("All fields are required.").slideDown();
                 } else {
                     $.ajax({
@@ -106,6 +124,74 @@
                     });
                 }
             });
+
+
+
+            function checkuser() {
+                var patternuser = /^[A-Za-z0-9]+$/;
+                var user = $("#name").val();
+                var validuser = patternuser.test(user);
+                if ($("#name").val().length < 4) {
+                    $("#name_error").html('username length is too short.').slideDown();
+                    return false;
+                } else if (!validuser) {
+                    $("#name_error").html('username should be a-z ,A-Z only.').slideDown();
+                    return false;
+                } else {
+                    $("#name_error").html('').slideDown();
+                    return true;
+                }
+            }
+
+
+            function checkemail() {
+                var patternemail = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                var email = $("#email").val();
+                var validateemail = patternemail.test(email);
+                if (email == "") {
+                    $("#email_error").html("required field").slideDown();
+                    return false;
+                } else if (!validateemail) {
+                    $("#email_error").html("invalid email").slideDown();
+                    return false;
+                } else {
+                    $("#email_error").html("").slideDown();
+                    return true;
+                }
+            }
+
+
+            function checkphone() {
+                if (!$.isNumeric($("#mobile").val())) {
+                    $("#phone_error").html("only number is allowed").slideDown();
+                    return false;
+                } else if ($("#mobile").val().length != 10) {
+                    $("#phone_error").html("10 digit required").slideDown();
+                    return false;
+                } else {
+                    $("#phone_error").html("").slideDown();
+                    return true;
+                }
+            }
+
+
+            function checkpassword() {
+                var patternpassword = "^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$";
+                var password = $("#password").val();
+                var validatepassword = patternpassword.test(password);
+
+                if (password == "") {
+                    $("#password_error").html("field required").slideDown();
+                    return false;
+                } else if (!validatepassword) {
+                    $("#password_error").html("Minimum eight characters, at least one letter, one number and one special character").slideDown();
+                    return false;
+                } else {
+                    $("#password_error").html("").slideDown();
+                }
+            }
+
+
         });
     </script>
 
@@ -126,16 +212,6 @@
     <div class="container">
         <div class="row m-auto p-4 mt-4">
             <div class="col-ml-6  offset-m-4">
-
-
-
-
-
-
-
-
-
-
 
 
 
