@@ -55,7 +55,7 @@ if (isset($_SESSION['year']) && isset($_SESSION['month']) && isset($_SESSION['us
     <html>
 
     <head>
-        <title>Result Form</title>
+        <title>Result</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     </head>
 
