@@ -198,7 +198,7 @@
 <body>
     <div class="container">
         <div class="row m-auto p-4 mt-4">
-            <div class="col-ml-6  offset-m-4">
+            <div class="col-md-4 bg-light  offset-md-4 ">
 
 
 
@@ -244,7 +244,7 @@
                     </div>
 
                     <div class="py-3 m-auto text-center">
-                        <button type="submit" name="insert" id="insert" value="" class="btn btn-primary w-100">Insert</button>
+                        <button type="submit" name="insert" id="insert" value="" class="btn btn-success w-100">Register</button>
                         <div class="py-3 m-auto text-center">
                             <!-- <button class="btn btn-success"><a href="display.php" class="text-light ">Display</a></button>
                             <button class="btn btn-success"><a href="index.php" class="text-light ">Back To Home</a></button> -->
