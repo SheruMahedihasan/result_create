@@ -9,6 +9,8 @@ if (isset($_POST['name']) && isset($_POST['phone']) && isset($_POST['email']) &&
     $phone = trim($_POST['phone']);
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
+    // $password1 = password_hash($password, PASSWORD_DEFAULT);
+    $password1 = md5($password);
 
     // if ($name == "") {
     //     $err_name = "<span class='error'>Please enter your name.</span>";
@@ -23,7 +25,7 @@ if (isset($_POST['name']) && isset($_POST['phone']) && isset($_POST['email']) &&
     // } elseif ($password == "") {
     //     $err_password = "<span class='error'>Please enter password</span>";
     // } else {
-    $query = "INSERT INTO student_detail (name, email, mobile, password) VALUES ('$name', '$email', '$phone', '$password')";
+    $query = "INSERT INTO student_detail (name, email, mobile, password) VALUES ('$name', '$email', '$phone', '$password1')";
     $result = mysqli_query($con, $query);
 
     if ($result) {

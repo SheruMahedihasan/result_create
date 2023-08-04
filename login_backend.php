@@ -9,7 +9,9 @@ session_start();
 if (isset($_POST['name']) && $_POST['name'] != '') {
     $name = trim($_POST['name']);
     $password = trim($_POST['password']);
-    $query = "select * from student_detail where name = '$name' and password = '$password'";
+    $password1 = md5($password);
+    
+    $query = "select * from student_detail where name = '$name' and password = '$password1'";
     $result = mysqli_query($con, $query);
     $row = mysqli_num_rows($result);
     if ($row == 1) {
