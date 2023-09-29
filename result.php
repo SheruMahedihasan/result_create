@@ -2,6 +2,7 @@
 include 'mysqli.config.php';
 // include 'welcome_login.php';
 session_start();
+// print_r($_SESSION);exit;
 if (isset($_SESSION['year']) && isset($_SESSION['month']) && isset($_SESSION['user_data'])) {
     $selectedMonth = $_SESSION["month"];
     $selectedYear = $_SESSION["year"];
