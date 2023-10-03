@@ -63,7 +63,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
         <style>
             #result {
-                margin: 2rem 15rem;
+                /* margin: 2rem 15rem; */
                 /* border: 1px solid black; */
             }
         </style>
@@ -71,7 +71,7 @@
 
     <body>
 
-        <div class="bg-light-subtle">
+        <div class="container bg-light-subtle">
             <div class=" mt-5 text-center">
 
                 <h2> Student Result </h2>
@@ -82,7 +82,6 @@
                 <button class="btn btn-danger"><a href="login_student.php" class="text-light ">Login</a></button> -->
 
                 </div>
-                <button class="btn btn-primary btn-sm" target="_blank" id="printButton" onclick="printResult()">Print Result</button>
             </div>
             <form action="" method="post" id="result">
                 <table id="table" class="table table-responsive bg-light border-dark table-striped table-bordered table-hover  text-center">
@@ -191,7 +190,8 @@
                     ?>
                 </table>
             </form>
-            <div class=" text-end">
+            <div class=" text-center">
+                <button class="btn btn-primary" target="_blank" id="printButton" onclick="printResult()">Print Result</button>
                 <button class="btn btn-info" id="backButton"><a href="resultlist.php" class="text-light ">Back To Home</a></button>
 
             </div>
@@ -211,7 +211,7 @@
             var backButton = document.getElementById('backButton');
             backButton.style.display = 'none';
 
-            window.print();
+            window.print('result');
 
             printButton.style.display = 'inline-block';
             backButton.style.display = 'inline-block';
